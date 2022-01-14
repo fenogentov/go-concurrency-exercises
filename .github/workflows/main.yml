@@ -12,3 +12,22 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: latest
+  # Run all unit tests.
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the pull request's source code.
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      # Install Go.
+      - name: Set up Go
+        uses: actions/setup-go@v2-beta
+        with:
+          go-version: latest
+      - name: Print Go version
+        run: go version
+
+      # Run unit tests.
+      - name: Run unit tests
+        run: go test -v ./...
