@@ -1,6 +1,6 @@
 name: ci
 
-on: [push, pull_request]
+on: push
 
 jobs:
   golangci:
@@ -11,4 +11,4 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
         with:
-          version: latest
+          version: v1.29
