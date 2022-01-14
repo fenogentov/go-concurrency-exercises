@@ -24,10 +24,8 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2-beta
         with:
-          go-version: latest
-      - name: Print Go version
-        run: go version
+          go-version: 1.17
 
       # Run unit tests.
       - name: Run unit tests
-        run: go test -v ./...
+        run: go test -v -race ./...
