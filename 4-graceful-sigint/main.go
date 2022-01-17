@@ -13,10 +13,36 @@
 
 package main
 
+import (
+	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+)
+
 func main() {
 	// Create a process
 	proc := MockProcess{}
 
 	// Run the process (blocking)
-	proc.Run()
+	go proc.Run()
+
+	ch := make(chan os.Signal, 1)
+	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
+
+	done := make(chan bool)
+
+	<-ch
+	go func() {
+		proc.Stop()
+		done <- true
+	}()
+
+	select {
+	case <-done:
+		fmt.Println("Process Stoped")
+	case <-ch:
+		fmt.Println("Process Killed")
+	}
+
 }
