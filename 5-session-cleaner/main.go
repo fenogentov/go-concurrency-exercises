@@ -24,6 +24,7 @@ import (
 	"time"
 )
 
+// ActionTime - session lifetime
 const ActionTime = 5
 
 // SessionManager keeps track of all sessions from creation, updating
@@ -51,6 +52,7 @@ func NewSessionManager() *SessionManager {
 	return m
 }
 
+// CleanExpiredSessions deletes expired sessions
 func (m *SessionManager) CleanExpiredSessions() {
 	throttler := time.Tick(2 * time.Second)
 	for {
