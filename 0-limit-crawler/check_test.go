@@ -23,7 +23,7 @@ func TestMain(t *testing.T) {
 				if time.Now().Sub(start).Nanoseconds() < 950000000 {
 					t.Log("There exists a two crawls that were executed less than 1 second apart.")
 					t.Log("Solution is incorrect.")
-					t.FailNow()
+					t.Fail()
 				}
 				start = time.Now()
 			}
