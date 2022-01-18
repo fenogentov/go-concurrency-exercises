@@ -25,7 +25,7 @@ type User struct {
 
 // HandleRequest runs the processes requested by users. Returns false
 // if process had to be killed
-func HandleRequestBeginner(process func(), u *User) bool {
+/* func HandleRequest(process func(), u *User) bool {
 	chProc := make(chan bool)
 	go func() {
 		process()
@@ -42,7 +42,10 @@ func HandleRequestBeginner(process func(), u *User) bool {
 
 	return <-chProc
 }
+*/
 
+// HandleRequest runs the processes requested by users. Returns false
+// if process had to be killed (Advanced Level)
 func HandleRequest(process func(), u *User) bool {
 
 	chProc := make(chan bool)
